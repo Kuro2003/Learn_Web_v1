@@ -25,12 +25,12 @@ app.set(
 
   "hbs"
 );
-app.set("views", path.join(__dirname, "resources/views"));
-console.log("PATH", path.join(__dirname, "resources/views"));
+            app.set("views", path.join(__dirname, "resources/views"));
+            console.log("PATH", path.join(__dirname, "resources/views"));
 
-route(app);
+            route(app);
 
 // test
 app.listen(port, () => {
-  console.log(`Example app listening on port https:/localhost/${port}`);
+            console.log(`Example app listening on port https:/localhost/${port}`);
 });

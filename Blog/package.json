@@ -1,4 +1,5 @@
 {
+  "beautiful": "lint-staged",
   "name": "blog",
   "version": "1.0.0",
   "description": "",
@@ -17,21 +18,16 @@
   "lint-staged": {
     "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-
-
-
   "dependencies": {
     "express": "^4.19.2",
     "express-handlebars": "^7.1.2"
   },
   "devDependencies": {
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.5",
     "morgan": "^1.10.0",
     "node-sass": "^9.0.0",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5"
   }
 }
