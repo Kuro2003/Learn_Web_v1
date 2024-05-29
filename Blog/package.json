@@ -14,6 +14,15 @@
   ],
   "author": "cuongnc",
   "license": "ISC",
+  "lint-staged": {
+    "*": "prettier --single-quote --trailing-comma all --tab-width 4 --write 'src/**/*.{js,json,scss}'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+
   "dependencies": {
     "express": "^4.19.2",
     "express-handlebars": "^7.1.2"
