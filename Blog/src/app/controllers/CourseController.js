@@ -30,6 +30,22 @@ class CourseController {
         res.status(500).send("Error saving course");
       });
   }
-}
 
+  // GET /courses/:id/edit
+  edit(req, res, next) {
+    Course.findById(req.params.id)
+      .then((course) => {
+        res.render("courses/edit", { course: mongooseToObject(course) });
+      })
+      .catch(next);
+  }
+
+  // PUT /courses/:id
+  update(req, res, next) {
+    // id là điều kiện, req.body là dữ liệu mới, dùng updateOne để update
+    Course.updateOne({ _id: req.params.id }, req.body)
+      .then(() => res.redirect("/me/stored/courses"))
+      .catch(next);
+  }
+}
 module.exports = new CourseController();
