@@ -21,9 +21,9 @@
                 <td>{{this.level}}</td>
                 <td>{{this.createdAt}}</td>
                 <td>
-                    <a href="/courses/{{this._id}}/edit" class="btn btn-link">Khôi phục</a>
+                    <a href="" class="btn btn-link btn-restore" , data-id="{{this._id}}">Khôi phục</a>
                     <a href="" class="btn btn-link" data-toggle="modal" data-target="#delele-course"
-                        data-id="{{this._id}}">xóa vĩnh viễn</a>
+                        data-id="{{this._id}}">Xóa vĩnh viễn</a>
                 </td>
             </tr>
 
@@ -53,24 +53,26 @@
                 </button>
             </div>
             <div class="modal-body">
-                Bạn có chắc chắn muốn xóa khóa học này không?
+                Khóa học này sẽ không thể được khôi phục lại. Bạn có chắc chắn muốn xóa khóa học này không?
             </div>
             <div class="modal-footer">
-                <button id="btn-delete-course" type="button" class="btn btn-danger">Xóa bỏ</button>
+                <button id="btn-delete-course" type="button" class="btn btn-danger">Xóa vĩnh viễn</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Hủy</button>
             </div>
         </div>
     </div>
 </div>
 
-{{!-- delete form --}}
 <form name="delete-course-form" method="POST"></form>
+<form name="restore-course-form" method="POST"></form>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var courseId;
         var deleteForm = document.forms['delete-course-form'];
+        var restoreForm = document.forms['restore-course-form'];
         var btnDeleteCourse = document.getElementById('btn-delete-course');
+        var restoreBtn = $('.btn-restore')
 
         $('#delele-course').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
@@ -79,8 +81,17 @@
 
         // delete course when click button delete
         btnDeleteCourse.onclick = function () {
-            deleteForm.action = '/courses/' + courseId + '?_method=DELETE'; // set action for form
+            deleteForm.action = '/courses/' + courseId + '/forge?_method=DELETE'; // set action for form
             deleteForm.submit(); // submit form
         }
+
+
+        restoreBtn.click(function (e) {
+            e.preventDefault();
+            var courseId = $(this).data('id');
+            // create event when click button restore
+            restoreForm.action = '/courses/' + courseId + '/restore?_method=PATCH'; // set action for form
+            restoreForm.submit(); // submit form
+        })
     });
 </script>

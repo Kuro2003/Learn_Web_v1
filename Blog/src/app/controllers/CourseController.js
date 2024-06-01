@@ -24,7 +24,7 @@ class CourseController {
     const course = new Course(formData);
     course
       .save()
-      .then(() => res.redirect("/"))
+      .then(() => res.redirect("/me/stored/courses"))
       .catch((error) => {
         console.error(error);
         res.status(500).send("Error saving course");
@@ -52,6 +52,21 @@ class CourseController {
   destroy(req, res, next) {
     // id là điều kiện, req.body là dữ liệu mới, dùng delete để delete
     Course.delete({ _id: req.params.id })
+      .then(() => res.redirect("back"))
+      .catch(next);
+  }
+
+  // DELETE /courses/:id/forge
+  forgeDestroy(req, res, next) {
+    // id là điều kiện, req.body là dữ liệu mới, dùng delete để delete
+    Course.deleteOne({ _id: req.params.id })
+      .then(() => res.redirect("back"))
+      .catch(next);
+  }
+
+  // PATCH /courses/:id/restore
+  restore(req, res, next) {
+    Course.restore({ _id: req.params.id })
       .then(() => res.redirect("back"))
       .catch(next);
   }
