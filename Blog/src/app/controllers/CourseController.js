@@ -50,8 +50,8 @@ class CourseController {
 
   // DELETE /courses/:id
   destroy(req, res, next) {
-    // id là điều kiện, req.body là dữ liệu mới, dùng deleteOne để delete
-    Course.deleteOne({ _id: req.params.id })
+    // id là điều kiện, req.body là dữ liệu mới, dùng delete để delete
+    Course.delete({ _id: req.params.id })
       .then(() => res.redirect("back"))
       .catch(next);
   }
