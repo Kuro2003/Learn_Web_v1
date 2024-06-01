@@ -1,15 +1,18 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-async function connect(){
+mongoose.set("strictQuery", false);
+
+async function connect() {
     try {
-        await mongoose.connect('mongodb://localhost:27017/tutorial_web', {
+        await mongoose.connect("mongodb://localhost:27017/tutorial_web", {
             useNewUrlParser: true,
             useUnifiedTopology: true,
+            //   useCreateIndex: true,
         });
-        console.log('Connect successfully!!!');
+        console.log("Connect successfully!!!");
     } catch (error) {
-        console.log('Connect failure!!!');
+        console.log("Connect failure!!!");
     }
 }
 
-module.exports = {connect};
+module.exports = { connect };
