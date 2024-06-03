@@ -17,7 +17,7 @@
             <option value="delete">Xóa</option>
         </select>
 
-        <button class="btn btn-primary btn check-all-submit-btn sm disabled">Thực hiện</button>
+        <button class="btn btn-primary btn check-all-submit-btn sm" disabled>Thực hiện</button>
     </div>
 
     <table class="table mt-4">
@@ -109,14 +109,6 @@
             deleteForm.submit(); // submit form
         }
 
-        // check sumbit clicked
-        checkAllSubmitBtn.on('submit', function (e) {
-            var isSubmitable = !$(this).hasClass('disabled');
-            if (!isSubmitable) {
-                e.preventDefault();
-            }
-        })
-
         // select all checkbox
         checkboxAll.change(function () {
             var isCheckedAll = $(this).prop('checked');
@@ -135,9 +127,9 @@
         function renderCheckAllSubmitButton() {
             var checkedCount = $('input[name="coursesId[]"]:checked').length;
             if (checkedCount) {
-                checkAllSubmitBtn.removeClass('disabled');
+                checkAllSubmitBtn.attr('disabled', false);
             } else {
-                checkAllSubmitBtn.addClass('disabled');
+                checkAllSubmitBtn.attr('disabled', true);
             }
         }
 
